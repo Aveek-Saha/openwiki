@@ -27,7 +27,7 @@ export type ResolvedReasoningConfig = {
   transport: ReasoningTransport;
 };
 
-const OPENAI_GPT_56_REASONING_CAPABILITY = {
+const GPT_56_REASONING_CAPABILITY = {
   transport: "responses-reasoning",
   values: REASONING_EFFORT_VALUES,
 } as const satisfies ReasoningCapability;
@@ -35,15 +35,20 @@ const OPENAI_GPT_56_REASONING_CAPABILITY = {
 const REASONING_CAPABILITIES: Partial<
   Record<OpenWikiProvider, Readonly<Record<string, ReasoningCapability>>>
 > = {
+  copilot: {
+    "gpt-5.6-terra": GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-luna": GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-sol": GPT_56_REASONING_CAPABILITY,
+  },
   openai: {
-    "gpt-5.6-terra": OPENAI_GPT_56_REASONING_CAPABILITY,
-    "gpt-5.6-luna": OPENAI_GPT_56_REASONING_CAPABILITY,
-    "gpt-5.6-sol": OPENAI_GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-terra": GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-luna": GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-sol": GPT_56_REASONING_CAPABILITY,
   },
   "openai-chatgpt": {
-    "gpt-5.6-terra": OPENAI_GPT_56_REASONING_CAPABILITY,
-    "gpt-5.6-luna": OPENAI_GPT_56_REASONING_CAPABILITY,
-    "gpt-5.6-sol": OPENAI_GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-terra": GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-luna": GPT_56_REASONING_CAPABILITY,
+    "gpt-5.6-sol": GPT_56_REASONING_CAPABILITY,
   },
   nvidia: {
     "nvidia/nemotron-3-super-120b-a12b": {

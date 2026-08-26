@@ -311,6 +311,16 @@ describe("createModel reasoning configuration", () => {
     expect(model.reasoning).toEqual({ effort: "max" });
   });
 
+  test("maps Copilot GPT-5.6 effort to the Responses reasoning payload", () => {
+    process.env[REASONING_EFFORT_KEY] = "xhigh";
+
+    const model = createModel("copilot", "gpt-5.6-sol", 0) as {
+      reasoning?: { effort?: string };
+    };
+
+    expect(model.reasoning).toEqual({ effort: "xhigh" });
+  });
+
   test("serializes OpenAI GPT-5.6 effort in the Responses request", async () => {
     const savedOpenAiKey = process.env.OPENAI_API_KEY;
     process.env[REASONING_EFFORT_KEY] = "max";
